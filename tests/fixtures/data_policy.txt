@@ -1,0 +1,10 @@
+Data Handling Policy
+
+The controller may process personal data for billing purposes.
+The processor shall notify the controller within 72 hours, in accordance with Article 33.
+Staff are prohibited from sharing account credentials with third parties.
+The processor must delete personal data when a contract terminates.
+The processor must not delete personal data if litigation is pending.
+Must retain audit logs for one year.
+Compliance with this policy is mandatory for all personnel.
+Each business unit is responsible for its own risk register.

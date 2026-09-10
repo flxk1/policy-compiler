@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "policy-compiler"
+version = "0.1.0"
+description = "Read a written policy, produce executable governance norms (O/P/F deontic draft)."
+requires-python = ">=3.10"
+dependencies = []
+
+# The loomground planes are optional enrichment, consumed behind availability checks.
+# The compiler runs without any of them, degrading to advisory extraction.
+[project.optional-dependencies]
+grounded = [
+    "loomground-deontic",
+    "loomground-norm",
+    "loomground-ingest",
+    "loomground-governance",
+]
+test = ["pytest"]
+
+[project.scripts]
+policy-compiler = "policy_compiler.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["policy_compiler*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
