@@ -62,7 +62,11 @@ def _build_formula(fields: dict):
     deo = planes.get("deontic")
     if deo is None:
         return None
-    modal = {"O": "must", "P": "may", "F": "must not"}[fields["operator"]]
+    # The plane keys on its own modal CLASS names; it fails closed on anything else
+    # (deontic >=0.2). `name()` is the plane's own operator-to-class map.
+    op = fields["operator"]
+    modal = deo.name(op) if hasattr(deo, "name") else {"O": "obligation", "P": "permission",
+                                                       "F": "prohibition"}[op]
     formula = deo.formula_from_fields(
         modal,
         fields["bearer"],

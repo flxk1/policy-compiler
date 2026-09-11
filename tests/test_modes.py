@@ -6,6 +6,8 @@ import subprocess
 import sys
 import textwrap
 
+import pytest
+
 from policy_compiler import compile, planes
 
 
@@ -73,3 +75,13 @@ def test_no_hard_loomground_dependency_on_bare_path():
     )
     assert proc.returncode == 0, proc.stderr
     assert "OK" in proc.stdout
+
+
+def test_a_present_deontic_plane_receives_its_own_modal_names():
+    """The plane fails closed on an unknown modal (deontic >=0.2): send its class names."""
+    deo = pytest.importorskip("deontic")
+    from policy_compiler.lower import _build_formula
+
+    f = _build_formula({"operator": "F", "bearer": "maker", "action": "delete the audit trail"})
+    assert f is not None and f.operator == "F"
+    assert deo.name("F") in deo.MODAL_TO_OP
