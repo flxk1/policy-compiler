@@ -2,8 +2,17 @@
   "name": "policy-compiler",
   "version": "0.0.1",
   "description": "Compile a written policy into grounded deontic norms (O/P/F with bearer, action, conditions, cross-references), surfacing conflicts, undetermined rules, and unplaceable spans, and running test cases. Stops at a validated draft; activation is reserved. Delegates lowering to the loomground deontic/norm planes when present, degrading to advisory when absent. Output matches the compliance-fleet grounding seam.",
-  "author": { "name": "Loomground Contributors" },
-  "license": "LicenseRef-PLACEHOLDER",
-  "keywords": ["policy", "deontic", "compiler", "governance", "norms", "obligation", "loomground", "rules"],
-  "skills": "./skills/"
+  "author": {
+    "name": "Loomground Contributors"
+  },
+  "keywords": [
+    "policy",
+    "deontic",
+    "compiler",
+    "governance",
+    "norms",
+    "obligation",
+    "loomground",
+    "rules"
+  ]
 }
