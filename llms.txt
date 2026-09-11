@@ -1,0 +1,48 @@
+# policy-compiler
+
+> Reads written policy text and lowers it into executable deontic norms — O/P/F operators bound to a bearer, an action, and their conditions — speaking the loomground deontic grammar when it is installed and an advisory modal-verb reader when it is not.
+
+## Problem
+Policy prose ("the processor must delete personal data when a contract terminates") is not directly executable. policy-compiler produces a validated draft from it — norms, conflicts, undetermined rules, and residual spans — and runs test cases against the draft. It stops there: activation of a compiled draft is a reserved human step the compiler never takes.
+
+## Install
+```
+pip install "policy-compiler @ git+https://github.com/flxk1/policy-compiler@v0.1.0"
+```
+Import name `policy_compiler`. Base install has zero hard dependencies (advisory extraction, no loomground required). Optional extras:
+- `.[grounded]` — `loomground-deontic`, `loomground-norm`, `loomground-ingest`, `loomground-governance` (consumed behind per-plane availability checks; any subset may be present)
+- `.[test]` — `pytest`
+
+## Usage
+```python
+from policy_compiler import compile, check
+
+draft = compile("The processor must delete personal data when a contract terminates.")
+for norm in draft.norms:
+    print(norm.provenance, norm.lg)
+
+report = check("policy.txt", [
+    {"actor": "processor", "action": "delete personal data", "expect": "obligatory"},
+])
+print(report.ok)
+```
+
+CLI:
+```
+policy-compiler compile <policy> [--json] [--advisory]
+policy-compiler check   <policy> <cases.json> [--advisory]
+```
+`<policy>` is a path to a document or a literal policy string. `--advisory` forces the plane-free path even where the planes are installed. `--json` emits the grounding-seam payload.
+
+## Contracts
+| Surface | Definition |
+|---|---|
+| Compile entry | `policy_compiler.compile(text_or_path) -> CompiledPolicy` |
+| Check entry | `policy_compiler.check(policy, cases) -> Report` |
+| Draft shape | `CompiledPolicy.norms` (`O`/`P`/`F` with bearer/action/condition/exception/deadline/cross-references/`.lg` form/provenance), `.conflicts`, `.undetermined`, `.residuals`, `.actors` |
+| Grouping helpers | `CompiledPolicy.obligations()`, `.permissions()`, `.prohibitions()` |
+| Grounding-seam handoff | `CompiledPolicy.to_grounding_seam()` — the payload `a2a-compliance`'s `deontic`/`norm`/`mandate` planes consume via `accept_compiled_policy` |
+| Planes consumed | `policy_compiler.planes` — `loomground-deontic` (render/project/conflict algebra), `loomground-norm` (rule extraction), `loomground-ingest` (corroboration receipt), `loomground-governance` (operator-vocabulary validation) |
+| Skill entry | `skills/policy-compiler/SKILL.md` |
+
+Conflict detection over-flags on purpose: two duties whose conditions could never fire together are still flagged, so a candidate is a prompt for oversight, not a decided contradiction.
