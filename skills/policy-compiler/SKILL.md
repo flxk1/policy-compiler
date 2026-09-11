@@ -1,18 +1,9 @@
 ---
 name: policy-compiler
 description: >-
-  Read a written policy and compile it to grounded deontic norms — obligations,
-  permissions, and prohibitions (O/P/F) with bearer, action, conditions, and
-  cross-references — surfacing conflicts, undetermined rules, and the spans it
-  could not place (residuals), and running test cases against the result. It
-  stops at a validated draft: activation is a reserved human step, never
-  automatic. When the loomground deontic/norm planes are present the lowering is
-  grounded via them; absent, it degrades to an advisory extraction marked
-  ungrounded. Its output matches the compliance-fleet grounding seam, so the
-  compiled norms are the policy the fleet steers against. Triggers on "turn this
-  policy into rules", "compile this contract's obligations", "find the conflicts
-  in this policy", "what does this policy require or forbid", "make a checkable
-  policy".
+  Read a written policy and produce executable governance norms. Use when the
+  user asks to turn a policy into rules, compile a contract's obligations, find
+  the conflicts in a policy, or ask what a policy requires or forbids.
 governance:
   grade: L1
   actions:

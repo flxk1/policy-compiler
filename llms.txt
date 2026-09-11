@@ -1,48 +1,39 @@
 # policy-compiler
 
-> Reads written policy text and lowers it into executable deontic norms — O/P/F operators bound to a bearer, an action, and their conditions — speaking the loomground deontic grammar when it is installed and an advisory modal-verb reader when it is not.
+> Read a written policy and produce executable governance norms.
 
 ## Problem
-Policy prose ("the processor must delete personal data when a contract terminates") is not directly executable. policy-compiler produces a validated draft from it — norms, conflicts, undetermined rules, and residual spans — and runs test cases against the draft. It stops there: activation of a compiled draft is a reserved human step the compiler never takes.
+A policy is prose. A runtime needs O/P/F norms bound to a bearer and an action before it can check an agent against one.
 
 ## Install
 ```
-pip install "policy-compiler @ git+https://github.com/flxk1/policy-compiler@v0.1.0"
+pip install "git+https://github.com/flxk1/policy-compiler.git@v0.1.0"
+pip install "policy-compiler[grounded] @ git+https://github.com/flxk1/policy-compiler.git@v0.1.0"
 ```
-Import name `policy_compiler`. Base install has zero hard dependencies (advisory extraction, no loomground required). Optional extras:
-- `.[grounded]` — `loomground-deontic`, `loomground-norm`, `loomground-ingest`, `loomground-governance` (consumed behind per-plane availability checks; any subset may be present)
-- `.[test]` — `pytest`
+
+Marketplace route and the two modes: [docs/install.md](docs/install.md).
 
 ## Usage
 ```python
-from policy_compiler import compile, check
-
-draft = compile("The processor must delete personal data when a contract terminates.")
-for norm in draft.norms:
-    print(norm.provenance, norm.lg)
-
-report = check("policy.txt", [
-    {"actor": "processor", "action": "delete personal data", "expect": "obligatory"},
-])
-print(report.ok)
+from policy_compiler import compile, resolve
+draft = compile("tests/fixtures/data_policy.txt")
+for n in draft.norms:
+    print(n.provenance, n.lg)
+print(len(draft.conflicts), "conflicts", len(draft.undetermined), "undetermined", len(draft.residuals), "residuals")
+print(resolve(draft, "processor", "delete personal data")[0])
 ```
 
-CLI:
-```
-policy-compiler compile <policy> [--json] [--advisory]
-policy-compiler check   <policy> <cases.json> [--advisory]
-```
-`<policy>` is a path to a document or a literal policy string. `--advisory` forces the plane-free path even where the planes are installed. `--json` emits the grounding-seam payload.
+## Interface
+- `compile(policy) → CompiledPolicy` · `policy` is policy text or a path to a text document
+- `CompiledPolicy`: `norms` `conflicts` `undetermined` `residuals` `actors` `mode` `planes_used` · `obligations()` `permissions()` `prohibitions()` · `to_grounding_seam()`
+- `Norm`: `operator` `bearer` `action` `condition` `exception` `deadline` `cross_references` `lg` `provenance` `source` · `projected()` · `grounded`
+- `check(policy, cases) → CheckReport` with `total` `passed` `results` `ok` · `resolve(policy, actor, action) → (verdict, lg)`
+- `Conflict` `Undetermined` `Residual` `Actor` `Span` `CaseResult` · `policy_compiler.planes.disable()` forces the plane-free path
+- CLI `policy-compiler compile <policy> [--json] [--advisory]` · `policy-compiler check <policy> <cases.json>`
+- Field detail: [docs/model.md](docs/model.md).
 
-## Contracts
-| Surface | Definition |
-|---|---|
-| Compile entry | `policy_compiler.compile(text_or_path) -> CompiledPolicy` |
-| Check entry | `policy_compiler.check(policy, cases) -> Report` |
-| Draft shape | `CompiledPolicy.norms` (`O`/`P`/`F` with bearer/action/condition/exception/deadline/cross-references/`.lg` form/provenance), `.conflicts`, `.undetermined`, `.residuals`, `.actors` |
-| Grouping helpers | `CompiledPolicy.obligations()`, `.permissions()`, `.prohibitions()` |
-| Grounding-seam handoff | `CompiledPolicy.to_grounding_seam()` — the payload `a2a-compliance`'s `deontic`/`norm`/`mandate` planes consume via `accept_compiled_policy` |
-| Planes consumed | `policy_compiler.planes` — `loomground-deontic` (render/project/conflict algebra), `loomground-norm` (rule extraction), `loomground-ingest` (corroboration receipt), `loomground-governance` (operator-vocabulary validation) |
-| Skill entry | `skills/policy-compiler/SKILL.md` |
+## Family
+Applied reasoning. `pyproject.toml` declares `dependencies = []`, so every loomground plane is optional here: the `grounded` extra adds `loomground-deontic`, `loomground-norm`, `loomground-ingest` and `loomground-governance`, each reached behind an availability check, and an absent plane degrades that dimension to advisory extraction. `to_grounding_seam()` emits the payload [a2a-compliance](https://github.com/flxk1/a2a-compliance) reads. Position and the plane table: [docs/position.md](docs/position.md).
 
-Conflict detection over-flags on purpose: two duties whose conditions could never fire together are still flagged, so a candidate is a prompt for oversight, not a decided contradiction.
+Language: loomground — guide https://github.com/flxk1/loomground/blob/main/llms.txt (the .lg language an agent reads, emits, validates); catalogue https://github.com/flxk1/loomground/blob/main/CATALOGUE.json
+Skills: policy-compiler
