@@ -27,6 +27,21 @@ payload.
 
 ## Install
 
+From the `loomground-plugins` marketplace (publication pending):
+
+```
+/plugin marketplace add flxk1/loomground-plugins
+/plugin install policy-compiler@loomground
+```
+
+Directly from GitHub, with pip:
+
+```
+pip install "git+https://github.com/flxk1/policy-compiler.git"
+```
+
+For local development:
+
 ```
 pip install -e .            # bare: advisory extraction, no loomground required
 pip install -e '.[grounded]'  # optional: consume the loomground planes when present
