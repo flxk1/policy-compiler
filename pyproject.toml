@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "policy-compiler"
 version = "0.2.0"
-description = "Read a written policy, produce executable governance norms (O/P/F deontic draft)."
+description = "Read a written policy and produce executable governance norms."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
