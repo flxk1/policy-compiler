@@ -4,6 +4,7 @@ description: >-
   Read a written policy and produce executable governance norms. Use when the
   user asks to turn a policy into rules, compile a contract's obligations, find
   the conflicts in a policy, or ask what a policy requires or forbids.
+allowed-tools: policy_compile policy_check
 governance:
   grade: L1
   actions:
@@ -28,7 +29,13 @@ governance:
 
 # policy-compiler
 
-Implemented in the `policy_compiler` package: `compile(policy) -> CompiledPolicy`
+Primary path: call `policy_compile` with the policy text. Call `policy_check`
+with the same text and explicit `{actor, action, expect}` cases when the user
+asks whether the draft satisfies examples. Both calls stop at a validated draft;
+neither activates it.
+
+The same operations are implemented in the `policy_compiler` package:
+`compile(policy) -> CompiledPolicy`
 (norms, conflicts, undetermined, residuals, per-norm provenance) and
 `check(policy, cases)`, plus the `policy-compiler` CLI. Lowering delegates to the
 loomground `deontic` and `norm` planes when present, with `ingest` corroboration

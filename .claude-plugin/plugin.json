@@ -14,5 +14,15 @@
     "obligation",
     "loomground",
     "rules"
-  ]
+  ],
+  "mcpServers": {
+    "loomground": {
+      "command": "loomground-mcp",
+      "args": [
+        "serve",
+        "--transport",
+        "stdio"
+      ]
+    }
+  }
 }
