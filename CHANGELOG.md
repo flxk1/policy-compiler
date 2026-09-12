@@ -2,6 +2,18 @@
 <!-- Copyright 2026 flxk1 -->
 # Changelog
 
+## [0.3.0](https://github.com/flxk1/policy-compiler/compare/policy-compiler-v0.2.0...policy-compiler-v0.3.0) (2026-09-12)
+
+
+### Features
+
+* **skill:** bind policy operations to MCP ([74e7fc4](https://github.com/flxk1/policy-compiler/commit/74e7fc4c9180b53179272ba5ddc3f591f3ee09d0))
+
+
+### Documentation
+
+* bring README onto the family canon ([9fa6bb8](https://github.com/flxk1/policy-compiler/commit/9fa6bb82e99fcb3131a71f2cf3752b840451a0c7))
+
 ## [0.2.0](https://github.com/flxk1/policy-compiler/compare/policy-compiler-v0.1.0...policy-compiler-v0.2.0) (2026-09-11)
 
 
