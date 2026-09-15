@@ -37,3 +37,4 @@ Applied reasoning. `pyproject.toml` declares `dependencies = []`, so every loomg
 
 Language: loomground — guide https://github.com/flxk1/loomground/blob/main/llms.txt (the .lg language an agent reads, emits, validates); catalogue https://github.com/flxk1/loomground/blob/main/CATALOGUE.json
 Skills: policy-compiler
+MCP tools: policy_check, policy_compile
