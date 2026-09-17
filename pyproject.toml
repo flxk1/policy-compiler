@@ -16,10 +16,12 @@ dependencies = []
 # The compiler runs without any of them, degrading to advisory extraction.
 [project.optional-dependencies]
 grounded = [
-    "loomground-deontic",
-    "loomground-norm",
-    "loomground-ingest",
-    "loomground-governance",
+    "loomground-deontic @ git+https://github.com/flxk1/loomground-deontic@loomground-deontic-v0.2.1",
+    "loomground-norm @ git+https://github.com/flxk1/loomground-norm@norm-v0.1.1",
+    "loomground-ingest @ git+https://github.com/flxk1/loomground-ingest@loomground-ingest-v0.3.0",
+    "loomground-governance @ git+https://github.com/flxk1/loomground-governance@loomground-governance-v0.11.1",
+    "loomground-factual @ git+https://github.com/flxk1/loomground-factual@factual-v0.1.0",
+    "loomground-solver @ git+https://github.com/flxk1/loomground-solver@solver-v0.6.0",
 ]
 test = ["pytest"]
 
