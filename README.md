@@ -13,8 +13,8 @@ A policy is prose. A runtime needs O/P/F norms bound to a bearer and an action b
 ## Install
 
 ```
-pip install "git+https://github.com/flxk1/policy-compiler.git@v0.1.0"
-pip install "policy-compiler[grounded] @ git+https://github.com/flxk1/policy-compiler.git@v0.1.0"
+pip install "git+https://github.com/flxk1/policy-compiler.git"
+pip install "policy-compiler[grounded] @ git+https://github.com/flxk1/policy-compiler.git"
 ```
 
 Marketplace route and the two modes: [docs/install.md](docs/install.md).
@@ -55,11 +55,15 @@ out: advisory P(controller : process personal data for billing purposes)
 
 ## Family
 
-Applied reasoning. `pyproject.toml` declares `dependencies = []`, so every loomground plane is optional here: the `grounded` extra adds `loomground-deontic`, `loomground-norm`, `loomground-ingest` and `loomground-governance`, each reached behind an availability check, and an absent plane degrades that dimension to advisory extraction. `to_grounding_seam()` emits the payload [a2a-compliance](https://github.com/flxk1/a2a-compliance) reads. Position and the plane table: [docs/position.md](docs/position.md).
+Applied reasoning. `pyproject.toml` declares `dependencies = []`, so every loomground plane is optional here: the `grounded` extra adds `loomground-deontic`, `loomground-norm`, `loomground-ingest` and `loomground-governance` (with their own dependencies `loomground-factual` and `loomground-solver`), each reached behind an availability check, and an absent plane degrades that dimension to advisory extraction. `to_grounding_seam()` emits the payload [a2a-compliance](https://github.com/flxk1/a2a-compliance) reads. Position and the plane table: [docs/position.md](docs/position.md).
 
 ## Status
 
-0.1.0 · 20 tests (18 pass, 2 skip while the planes are absent) · Python >=3.10 · Apache-2.0. The compiler stops at a validated draft; activation is a reserved human step. Bounds: [docs/limits.md](docs/limits.md).
+0.3.0 · 21 tests (19 pass, 2 skip while the planes are absent) · Python >=3.10 · Apache-2.0. The compiler stops at a validated draft; activation is a reserved human step. Bounds: [docs/limits.md](docs/limits.md).
+
+## How this is made
+
+The code and documentation are written with Loomground agents running on Claude (Anthropic). The maintainer reads and corrects all of it.
 
 ## License
 
