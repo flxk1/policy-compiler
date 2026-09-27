@@ -7,8 +7,8 @@ A policy is prose. A runtime needs O/P/F norms bound to a bearer and an action b
 
 ## Install
 ```
-pip install "git+https://github.com/flxk1/policy-compiler.git@v0.1.0"
-pip install "policy-compiler[grounded] @ git+https://github.com/flxk1/policy-compiler.git@v0.1.0"
+pip install "git+https://github.com/flxk1/policy-compiler.git"
+pip install "policy-compiler[grounded] @ git+https://github.com/flxk1/policy-compiler.git"
 ```
 
 Marketplace route and the two modes: [docs/install.md](docs/install.md).
@@ -33,7 +33,7 @@ print(resolve(draft, "processor", "delete personal data")[0])
 - Field detail: [docs/model.md](docs/model.md).
 
 ## Family
-Applied reasoning. `pyproject.toml` declares `dependencies = []`, so every loomground plane is optional here: the `grounded` extra adds `loomground-deontic`, `loomground-norm`, `loomground-ingest` and `loomground-governance`, each reached behind an availability check, and an absent plane degrades that dimension to advisory extraction. `to_grounding_seam()` emits the payload [a2a-compliance](https://github.com/flxk1/a2a-compliance) reads. Position and the plane table: [docs/position.md](docs/position.md).
+Applied reasoning. `pyproject.toml` declares `dependencies = []`, so every loomground plane is optional here: the `grounded` extra adds `loomground-deontic`, `loomground-norm`, `loomground-ingest` and `loomground-governance` (with their own dependencies `loomground-factual` and `loomground-solver`), each reached behind an availability check, and an absent plane degrades that dimension to advisory extraction. `to_grounding_seam()` emits the payload [a2a-compliance](https://github.com/flxk1/a2a-compliance) reads. Position and the plane table: [docs/position.md](docs/position.md).
 
 Language: loomground — guide https://github.com/flxk1/loomground/blob/main/llms.txt (the .lg language an agent reads, emits, validates); catalogue https://github.com/flxk1/loomground/blob/main/CATALOGUE.json
 Skills: policy-compiler
