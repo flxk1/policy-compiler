@@ -2,6 +2,15 @@
 <!-- Copyright 2026 flxk1 -->
 # Changelog
 
+## [0.3.1](https://github.com/flxk1/policy-compiler/compare/policy-compiler-v0.3.0...policy-compiler-v0.3.1) (2026-09-29)
+
+
+### Documentation
+
+* correct stale claims; add How this is made ([c51e06b](https://github.com/flxk1/policy-compiler/commit/c51e06b159ffd9b0f3bfb9334f52538ef7137547))
+* correct stale claims; state how this is made ([e19830e](https://github.com/flxk1/policy-compiler/commit/e19830e97192eb04446e6b60ac68dfd1e2bda0d8))
+* How this is made names no model vendor ([179b5ea](https://github.com/flxk1/policy-compiler/commit/179b5eadd36885a6b4e0acd6d510901fe91ab436))
+
 ## [0.3.0](https://github.com/flxk1/policy-compiler/compare/policy-compiler-v0.2.0...policy-compiler-v0.3.0) (2026-09-12)
 
 
